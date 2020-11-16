@@ -8,22 +8,21 @@ function callback(req, res) {
     client_secret: config.clientSecret,
     code: req.query.code,
   };
-
   const options = { headers: { accept: "application/json" } };
   axios
     .post(`${config.oauthUrl}/access_token`, body, options)
-    .then((res) => res.data["accessToken"])
-    .then((accessToken) => {
-      const user = getUserInfo(accessToken);
-      res.json({
-        data: {
-          login: user.login,
-          githubId: user.id,
-          avatar: user.avatar_url,
-          email: user.email,
-          name: user.name,
-          location: user.location,
-        },
+    .then((result) => {
+      getUserInfo(result.data.access_token).then((user) => {
+        return res.json({
+          data: {
+            login: user.login,
+            githubId: user.id,
+            avatar: user.avatar_url,
+            email: user.email,
+            name: user.name,
+            location: user.location,
+          },
+        });
       });
     })
     .catch((err) => res.status(500).json({ message: err.message }));

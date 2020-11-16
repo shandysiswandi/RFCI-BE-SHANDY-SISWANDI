@@ -48,9 +48,11 @@ module.exports = getUserInfo;
 
 //change
 const UserServices = require("./userInfoService");
+ .then((res) => resp.data["accessToken"])
 const user = UserServices.getUserInfo(accessToken);
 
 // to
 const getUserInfo = require("./userInfoService");
-const user = getUserInfo(accessToken);
+ .then((res) => res.data.access_token)
+getUserInfo(accessToken).then((user)=>{/* ...rest */});
 ```
