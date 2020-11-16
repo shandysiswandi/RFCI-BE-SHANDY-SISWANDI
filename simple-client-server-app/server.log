@@ -1,0 +1,2 @@
+[2020-11-16T10:52:04.281Z] Success: POST http://192.168.1.30/ {"counter": 1, "X-RANDOM": "57tfhihm"} 
+[2020-11-16T10:52:09.260Z] Success: POST http://192.168.1.30/ {"counter": 2, "X-RANDOM": "suumddei"} 
